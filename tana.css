@@ -1,0 +1,305 @@
+/* Tana · a white Typora theme inspired by Tana Outliner */
+@font-face {
+    font-family: "Tana PingFang";
+    src: local("PingFangSC-Regular");
+    font-style: normal;
+    font-weight: 400;
+    unicode-range: U+2E80-2FFF, U+3000-303F, U+3100-312F, U+31A0-31EF,
+                   U+3400-4DBF, U+4E00-9FFF, U+F900-FAFF,
+                   U+FE10-FE1F, U+FE30-FE4F, U+FF01-FF0F, U+FF1A-FF20,
+                   U+FF3B-FF40, U+FF5B-FF60, U+20000-323AF;
+}
+
+@font-face {
+    font-family: "Tana PingFang";
+    src: local("PingFangSC-Semibold");
+    font-style: normal;
+    font-weight: 600;
+    unicode-range: U+2E80-2FFF, U+3000-303F, U+3100-312F, U+31A0-31EF,
+                   U+3400-4DBF, U+4E00-9FFF, U+F900-FAFF,
+                   U+FE10-FE1F, U+FE30-FE4F, U+FF01-FF0F, U+FF1A-FF20,
+                   U+FF3B-FF40, U+FF5B-FF60, U+20000-323AF;
+}
+
+:root {
+    color-scheme: light;
+    --tana-paper: #ffffff;
+    --tana-surface: #f6f7f9;
+    --tana-line: #dce0e5;
+    --tana-ink: #282726;
+    --tana-muted: #65636c;
+    --tana-accent: #156b56;
+    --tana-link: #1768a4;
+    --tana-mark: #d7f2e7;
+    --tana-hit: #ffda85;
+    --tana-hit-ink: #49300b;
+    --tana-current: #503c91;
+    --tana-apricot: #fff0d9;
+    --tana-ochre: #875019;
+    --tana-mint-ink: #175d48;
+    --tana-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+               "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+
+    --bg-color: var(--tana-paper);
+    --text-color: var(--tana-ink);
+    --md-char-color: #626977;
+    --meta-content-color: var(--tana-muted);
+    --heading-char-color: var(--tana-accent);
+    --primary-color: var(--tana-accent);
+    --primary-btn-border-color: #105741;
+    --primary-btn-text-color: #fff;
+    --side-bar-bg-color: var(--tana-surface);
+    --active-file-bg-color: #e3f3ec;
+    --active-file-text-color: #215d4b;
+    --active-file-border-color: var(--tana-accent);
+    --control-text-color: var(--tana-muted);
+    --control-text-hover-color: var(--tana-ink);
+    --item-hover-bg-color: #f0f4f2;
+    --item-hover-text-color: var(--tana-ink);
+    --window-border: 1px solid var(--tana-line);
+    --table-border-color: var(--tana-line);
+    --select-text-bg-color: #cbdefe;
+    --select-text-font-color: #172e55;
+    --search-select-bg-color: var(--tana-current);
+    --search-select-text-color: #fff;
+    --monospace: "SFMono-Regular", Consolas, "Liberation Mono",
+                 "PingFang SC", "Microsoft YaHei", monospace;
+}
+
+html { font-size: 16px; }
+html, body { background-color: var(--bg-color); color: var(--text-color); }
+body { font-family: var(--tana-sans); }
+#outline-content .outline-active > .outline-item { color: var(--tana-accent); }
+
+#write {
+    font-family: "Tana PingFang", var(--tana-sans);
+    box-sizing: border-box;
+    max-width: 56rem;
+    margin: 0 auto;
+    padding: 2.75rem clamp(1.15rem, 4vw, 3rem) 5rem;
+    font-size: 1rem;
+    line-height: 1.75;
+    caret-color: var(--tana-accent);
+}
+
+#write p { margin: .72em 0; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6 {
+    font-family: var(--tana-sans);
+    margin: 1.65em 0 .48em;
+    line-height: 1.38;
+    font-weight: 650;
+    color: #211f21;
+}
+#write h1 {
+    font-weight: 700;
+    font-size: 2.15rem;
+    line-height: 1.22;
+    letter-spacing: -.025em;
+}
+#write h2 { font-size: 1.55rem; }
+#write h3 { font-size: 1.19rem; }
+#write h4 { font-size: 1.06rem; }
+#write h5, #write h6 { font-size: 1rem; color: var(--tana-muted); }
+#write h6 { font-weight: 500; }
+#write > :first-child { margin-top: 0; }
+#write strong { font-weight: 700; }
+#write hr { margin: 2rem 0; border: 0; border-top: 1px solid var(--tana-line); }
+
+/* Blue and an underline identify links even inside a paragraph of dark text. */
+#write a[href], #write .md-link .md-content {
+    color: var(--tana-link);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: .17em;
+}
+#write a[href]:hover {
+    color: #115584;
+    background-color: #edf6fc;
+    text-decoration-thickness: 2px;
+}
+#write a[href]:focus-visible {
+    outline: 2px solid var(--tana-link);
+    outline-offset: 2px;
+}
+#write mark {
+    background-color: var(--tana-mark);
+    color: var(--tana-mint-ink);
+    border-radius: .24em;
+}
+#write blockquote {
+    margin: 1.15rem 0;
+    padding: .1rem 1rem;
+    border-left: 3px solid #78bba5;
+    background: #f2f8f5;
+    color: #40584e;
+}
+#write ul, #write ol { padding-left: 1.65rem; }
+#write li > p { margin: .3em 0; }
+/* Tana's node guides distinguish nested items without adding extra bullets. */
+#write li > ul, #write li > ol {
+    margin: .15em 0 .25em;
+    border-inline-start: 1px solid var(--tana-line);
+}
+#write li::marker { color: #626b79; }
+#write .md-task-list-item > input { margin-inline-start: -1.35em; }
+#write input[type="checkbox"] { accent-color: var(--tana-accent); }
+
+#write table {
+    margin: 1.2rem 0;
+    border-collapse: collapse;
+    font-size: .8125rem;
+    line-height: 1.55;
+    font-variant-numeric: tabular-nums;
+}
+#write th, #write td {
+    padding: .48em .8em;
+    border: 1px solid var(--tana-line);
+}
+#write th { background: #f6f4f0; font-weight: 650; }
+#write tbody tr:nth-child(even) { background: #fafbfc; }
+
+#write code, #write pre, #typora-source { font-family: var(--monospace); }
+#write :not(pre) > code {
+    padding: .08em .3em;
+    border-radius: .25em;
+    background: var(--tana-apricot);
+    color: var(--tana-ochre);
+    font-size: .91em;
+}
+#write .md-fences, #write .md-meta-block {
+    margin: 1.1rem 0;
+    padding: .8rem 1rem;
+    border: 1px solid var(--tana-line);
+    border-radius: .5rem;
+    background-color: var(--tana-surface);
+    font-size: .91rem;
+    line-height: 1.6;
+}
+#write .md-meta-block, #write .md-lang { color: var(--tana-muted); }
+#write .cm-s-inner .cm-comment { color: #5b6370; }
+#write .cm-s-inner .cm-keyword { color: #69468b; }
+#write .cm-s-inner .cm-string { color: #216844; }
+#write .cm-s-inner .cm-number { color: #854817; }
+#write .cm-s-inner .cm-def { color: #235493; }
+
+/* A warm header and a few colored nodes leave the reading surface white. */
+@media screen {
+    #write > h1:first-of-type {
+        position: relative;
+        isolation: isolate;
+        padding: .8em 0 .9em;
+    }
+    #write > h1:first-of-type::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        background-image: radial-gradient(
+            ellipse farthest-corner at center,
+            #fff0d9 10%,
+            rgba(255, 240, 217, .78) 50%,
+            rgba(255, 240, 217, .24) 79%,
+            rgba(255, 240, 217, 0) 100%
+        );
+        /* Soften the boundary without adding a separate surface or outline. */
+        mask-image:
+            linear-gradient(to right, transparent, black 10%, black 90%, transparent),
+            linear-gradient(to bottom, transparent, black 16%, black 84%, transparent);
+        mask-composite: intersect;
+    }
+    #write pre.md-meta-block {
+        margin-block-start: 0;
+        background-color: #fcfcfb;
+        border-color: #ecece9;
+        color: #727371;
+        font-style: italic;
+    }
+    /* Keep a small pointer target so the front matter can reopen. */
+    #write pre.md-meta-block:not(:hover) {
+        box-sizing: border-box;
+        height: .75rem;
+        min-height: 0;
+        margin-block-end: .45rem;
+        padding-block: 0;
+        overflow: hidden;
+        border-color: transparent;
+        background: linear-gradient(var(--tana-line), var(--tana-line)) center / 2rem 2px no-repeat;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+        caret-color: transparent;
+    }
+    #write ul > li:not(.md-task-list-item) {
+        position: relative;
+        list-style-type: none;
+    }
+    #write ul > li:not(.md-task-list-item)::before {
+        content: "";
+        position: absolute;
+        inset-inline-start: -1.15em;
+        top: .54em;
+        width: .64em;
+        height: .64em;
+        border-radius: 50%;
+        background: radial-gradient(circle, #238467 0 31%, #c4ecde 34% 100%);
+    }
+    #write li ul > li:not(.md-task-list-item)::before {
+        top: .73em;
+        width: .29em;
+        height: .29em;
+        background: #83828b;
+    }
+    /* Render same-page links as the green relationship labels. */
+    #write a[href^="#"]:where(:not([href="#"], .md-search-hit, .md-search-select)),
+    #write .md-link[data-href^="#"]:where(:not([data-href="#"])) .md-content:where(:not(.md-search-hit, .md-search-select)) {
+        padding-inline: .22em;
+        border-radius: .23em;
+        background-color: var(--tana-mark);
+        color: var(--tana-mint-ink);
+    }
+    #write a[href^="#"]:where(:not([href="#"], .md-search-hit, .md-search-select)):hover,
+    #write .md-link[data-href^="#"]:where(:not([data-href="#"])) .md-content:where(:not(.md-search-hit, .md-search-select)):hover {
+        background-color: #c6e9da;
+        color: #124b39;
+    }
+}
+
+/* Typora searches document ranges, editor spans and file-list snippets. */
+.md-search-hit, .cm-search-hit, .ty-file-search-match-text,
+#write .md-search-hit, #write .cm-s-inner .cm-search-hit {
+    background-color: var(--tana-hit);
+    color: var(--tana-hit-ink);
+}
+.ty-search-item-line.active .ty-file-search-match-text,
+.md-search-hit.md-search-select, .md-search-select,
+.cm-search-hit.CodeMirror-selectedtext, .cm-search-hit.CodeMirror-selected,
+#write .md-search-select, #write .md-search-hit.md-search-select,
+#write .cm-s-inner .cm-search-hit.CodeMirror-selectedtext,
+#write .cm-s-inner .cm-search-hit.CodeMirror-selected {
+    background-color: var(--search-select-bg-color);
+    color: var(--search-select-text-color);
+    border-radius: .15em;
+    box-shadow: 0 0 0 1px var(--search-select-bg-color);
+}
+#write .md-search-hit :not(.md-search-select),
+#write .md-search-select :not(.md-search-select) {
+    /* Keep nested links and inline code legible against the match color. */
+    color: inherit !important;
+    background-color: transparent !important;
+}
+::highlight(search-hit) {
+    background-color: var(--tana-hit);
+    color: var(--tana-hit-ink);
+}
+::highlight(search-select) {
+    background-color: var(--search-select-bg-color);
+    color: var(--search-select-text-color);
+    text-shadow: none;
+}
+
+@media print {
+    :root { --bg-color: #fff; --text-color: #222; }
+    #write { max-width: none; padding: 0; }
+    #write h1, #write h2, #write h3 { break-after: avoid; }
+    #write tr { break-inside: avoid; }
+}

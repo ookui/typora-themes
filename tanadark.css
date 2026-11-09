@@ -1,0 +1,379 @@
+/* tanadark · Tana Outliner palette adapted for low-light reading */
+@font-face {
+    font-family: "Tana PingFang";
+    src: local("PingFangSC-Regular");
+    font-style: normal;
+    font-weight: 400;
+    unicode-range: U+2E80-2FFF, U+3000-303F, U+3100-312F, U+31A0-31EF,
+                   U+3400-4DBF, U+4E00-9FFF, U+F900-FAFF,
+                   U+FE10-FE1F, U+FE30-FE4F, U+FF01-FF0F, U+FF1A-FF20,
+                   U+FF3B-FF40, U+FF5B-FF60, U+20000-323AF;
+}
+
+@font-face {
+    font-family: "Tana PingFang";
+    src: local("PingFangSC-Semibold");
+    font-style: normal;
+    font-weight: 600;
+    unicode-range: U+2E80-2FFF, U+3000-303F, U+3100-312F, U+31A0-31EF,
+                   U+3400-4DBF, U+4E00-9FFF, U+F900-FAFF,
+                   U+FE10-FE1F, U+FE30-FE4F, U+FF01-FF0F, U+FF1A-FF20,
+                   U+FF3B-FF40, U+FF5B-FF60, U+20000-323AF;
+}
+
+:root {
+    color-scheme: dark;
+    --tana-paper: #191a1e;
+    --tana-surface: #202126;
+    --tana-line: #36383e;
+    --tana-ink: #999b9f;
+    --tana-muted: #858890;
+    --tana-blue: #80a5b2;
+    --tana-link: #80a5b2;
+    --tana-mark: #29473b;
+    --tana-hit: #554628;
+    --tana-hit-ink: #ddc99a;
+    --tana-current: #bd965b;
+    --tana-node: #7099a7;
+    --tana-tag-bg: #17313e;
+    --tana-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+               "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+
+    --bg-color: var(--tana-paper);
+    --text-color: var(--tana-ink);
+    --md-char-color: #858890;
+    --meta-content-color: var(--tana-muted);
+    --heading-char-color: var(--tana-blue);
+    --primary-color: var(--tana-blue);
+    --primary-btn-border-color: #608491;
+    --primary-btn-text-color: #182226;
+    --side-bar-bg-color: #202329;
+    --active-file-bg-color: #303943;
+    --active-file-text-color: #afbec7;
+    --active-file-border-color: var(--tana-node);
+    --control-text-color: var(--tana-muted);
+    --control-text-hover-color: var(--tana-ink);
+    --item-hover-bg-color: #26282e;
+    --item-hover-text-color: var(--tana-ink);
+    --rawblock-edit-panel-bd: var(--tana-surface);
+    --window-border: 1px solid var(--tana-line);
+    --table-border-color: var(--tana-line);
+    --select-text-bg-color: #344c56;
+    --select-text-font-color: #c0c4c7;
+    --search-select-bg-color: var(--tana-current);
+    --search-select-text-color: #251b0e;
+    --monospace: "SFMono-Regular", Consolas, "Liberation Mono",
+                 "PingFang SC", "Microsoft YaHei", monospace;
+}
+
+html { font-size: 16px; }
+html, body { background-color: var(--bg-color); color: var(--text-color); }
+body { font-family: var(--tana-sans); }
+#outline-content .outline-active > .outline-item { color: var(--tana-blue); }
+
+#write {
+    font-family: "Tana PingFang", var(--tana-sans);
+    box-sizing: border-box;
+    max-width: 56rem;
+    margin: 0 auto;
+    padding: 2.75rem clamp(1.15rem, 4vw, 3rem) 5rem;
+    font-size: 1rem;
+    line-height: 1.75;
+    caret-color: var(--tana-blue);
+}
+
+#write p { margin: .72em 0; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6 {
+    font-family: var(--tana-sans);
+    margin: 1.65em 0 .48em;
+    line-height: 1.38;
+    font-weight: 650;
+    color: #b3b4b9;
+}
+#write h1 {
+    font-weight: 700;
+    font-size: 2.15rem;
+    line-height: 1.22;
+    letter-spacing: -.025em;
+}
+#write h2 { font-size: 1.55rem; }
+#write h3 { font-size: 1.19rem; }
+#write h4 { font-size: 1.06rem; }
+#write h5, #write h6 { font-size: 1rem; color: var(--tana-muted); }
+#write h6 { font-weight: 500; }
+#write > :first-child { margin-top: 0; }
+#write strong { font-weight: 700; }
+#write hr { margin: 2rem 0; border: 0; border-top: 1px solid var(--tana-line); }
+
+/* Links retain an underline on neutral and tinted surfaces. */
+#write a[href], #write .md-link .md-content {
+    color: var(--tana-link);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: .17em;
+}
+#write a[href]:hover {
+    color: #a1b8c1;
+    background-color: #23343e;
+    text-decoration-thickness: 2px;
+}
+#write a[href]:focus-visible {
+    outline: 2px solid var(--tana-link);
+    outline-offset: 2px;
+}
+#write mark {
+    background-color: var(--tana-mark);
+    color: #acd1ba;
+    border-radius: .24em;
+}
+#write blockquote {
+    margin: 1.15rem 0;
+    padding: .1rem 1rem;
+    border-left: 2px solid #7d778d;
+    background: #242329;
+    color: #aaa5b3;
+}
+#write ul, #write ol { padding-left: 1.65rem; }
+#write li > p { margin: .3em 0; }
+/* Tana's node guides distinguish nested items without adding extra bullets. */
+#write li > ul, #write li > ol {
+    margin: .15em 0 .25em;
+    border-inline-start: 1px solid var(--tana-line);
+}
+#write li::marker { color: #81a7b4; }
+#write .md-task-list-item > input { margin-inline-start: -1.35em; }
+#write input[type="checkbox"] { accent-color: var(--tana-blue); }
+
+/* The cyan nodes and blue-backed labels echo Tana's weekly goals view. */
+@media screen {
+    /* The first heading stays aligned with the body, including after front matter. */
+    #write > h1:first-of-type {
+        position: relative;
+        isolation: isolate;
+        padding: .8em 0 .9em;
+    }
+    #write > h1:first-of-type::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        background-image: radial-gradient(
+            ellipse farthest-corner at center,
+            #3b3026 10%,
+            rgba(59, 48, 38, .78) 50%,
+            rgba(59, 48, 38, .24) 79%,
+            rgba(59, 48, 38, 0) 100%
+        );
+        /* Soften the boundary without adding a separate surface or outline. */
+        mask-image:
+            linear-gradient(to right, transparent, black 10%, black 90%, transparent),
+            linear-gradient(to bottom, transparent, black 16%, black 84%, transparent);
+        mask-composite: intersect;
+    }
+    #write h2 { color: #b6b5af; }
+    #write strong { color: #b1b7bc; }
+    #write pre.md-meta-block {
+        margin-block-start: 0;
+        color: #7d8389;
+        background-color: #1b1d21;
+        border-color: #2b2e33;
+        font-size: .83rem;
+        font-style: italic;
+    }
+    /* Keep a small pointer target so the front matter can reopen. */
+    #write pre.md-meta-block:not(:hover) {
+        box-sizing: border-box;
+        height: .75rem;
+        min-height: 0;
+        margin-block-end: .45rem;
+        padding-block: 0;
+        overflow: hidden;
+        border-color: transparent;
+        background: linear-gradient(var(--tana-line), var(--tana-line)) center / 2rem 2px no-repeat;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+        caret-color: transparent;
+    }
+    #write ul > li:not(.md-task-list-item)::marker {
+        content: "◉  ";
+        color: var(--tana-node);
+        font-size: .8em;
+    }
+    #write li ul > li:not(.md-task-list-item)::marker { content: "○  "; }
+    #write li > ul, #write li > ol { border-inline-start-color: #354349; }
+    #write a[href^="#"]:where(:not([href="#"], .md-search-hit, .md-search-select)),
+    #write .md-link[data-href^="#"]:where(:not([data-href="#"])) .md-content:where(:not(.md-search-hit, .md-search-select)) {
+        background-color: var(--tana-tag-bg);
+        color: #95b6c2;
+        border-radius: .25em;
+        padding-inline: .2em;
+    }
+    /* Leave the native task input clickable beside the decorative node. */
+    #write ul > li.md-task-list-item { padding-inline-start: 1.1em; }
+    #write ul > li.md-task-list-item::before {
+        content: "";
+        position: absolute;
+        inset-inline-start: -1.2em;
+        top: .52em;
+        width: .7em;
+        height: .7em;
+        box-sizing: border-box;
+        border: 1px solid #527480;
+        border-radius: 50%;
+        background: #20323c;
+        pointer-events: none;
+    }
+    #write ul > li.md-task-list-item > input[type="checkbox"] {
+        inset-inline-start: 0;
+        margin-inline-start: -.1em;
+    }
+    #write .md-task-list-item > input[type="checkbox"] {
+        appearance: none;
+        -webkit-appearance: none;
+        box-sizing: border-box;
+        width: .94em;
+        height: .94em;
+        margin-top: .4em;
+        border: 1px solid #616772;
+        border-radius: .2em;
+        background-color: #303138;
+        color: #a2bdc5;
+    }
+    #write .md-task-list-item > input[type="checkbox"]:checked {
+        background-color: #28404a;
+        border-color: var(--tana-node);
+    }
+    #write .md-task-list-item > input[type="checkbox"]:checked::after {
+        content: "";
+        position: absolute;
+        left: 29%;
+        top: 10%;
+        width: 30%;
+        height: 54%;
+        border: solid currentColor;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+    }
+    #write .md-task-list-item > input:focus-visible {
+        outline: 2px solid var(--tana-node);
+        outline-offset: 2px;
+    }
+}
+
+#write table {
+    margin: 1.2rem 0;
+    border-collapse: collapse;
+    font-size: .8125rem;
+    line-height: 1.55;
+    font-variant-numeric: tabular-nums;
+}
+#write th, #write td {
+    padding: .48em .8em;
+    border: 1px solid var(--tana-line);
+}
+#write th { background: #252830; font-weight: 650; }
+#write tbody tr:nth-child(even) { background: #1e2025; }
+
+#write code, #write pre, #typora-source { font-family: var(--monospace); }
+#write :not(pre) > code {
+    padding: .08em .3em;
+    border-radius: .25em;
+    background: #302b27;
+    color: #bfa68c;
+    font-size: .91em;
+}
+#write .md-fences, #write .md-meta-block {
+    margin: 1.1rem 0;
+    padding: .8rem 1rem;
+    border: 1px solid var(--tana-line);
+    border-radius: .5rem;
+    background-color: var(--tana-surface);
+    font-size: .91rem;
+    line-height: 1.6;
+}
+#write .md-meta-block, #write .md-lang { color: var(--tana-muted); }
+#write .cm-s-inner .cm-comment { color: #898d95; }
+#write .cm-s-inner .cm-keyword { color: #ac97b9; }
+#write .cm-s-inner .cm-string { color: #90aa99; }
+#write .cm-s-inner .cm-number { color: #b89d87; }
+#write .cm-s-inner .cm-def { color: #8da6b8; }
+
+/* Shared editor surfaces and source-mode syntax. */
+#typora-sidebar { background-color: var(--side-bar-bg-color); }
+#typora-source, #typora-source .CodeMirror {
+    background: var(--tana-paper);
+    color: var(--tana-ink);
+}
+#write .CodeMirror, #write .CodeMirror-gutters {
+    color: var(--tana-ink);
+    background: var(--tana-surface);
+    border-color: var(--tana-line);
+}
+.CodeMirror div.CodeMirror-cursor { border-left-color: var(--tana-ink); }
+#typora-source .cm-header, #typora-source .cm-link,
+#write .cm-s-inner .cm-property, #write .cm-s-inner .cm-tag { color: var(--tana-link); }
+#typora-source .cm-comment, #typora-source .cm-formatting { color: var(--tana-muted); }
+#typora-source .cm-string, #write .cm-s-inner .cm-string-2 { color: #90aa99; }
+#typora-source .cm-atom, #write .cm-s-inner .cm-atom,
+#write .cm-s-inner .cm-builtin, #write .cm-s-inner .cm-attribute { color: #ac97b9; }
+#write .cm-s-inner .cm-variable-2, #write .cm-s-inner .cm-qualifier { color: #8da6b8; }
+#write .cm-s-inner .cm-meta, #write .cm-s-inner .cm-operator { color: var(--tana-muted); }
+#typora-quick-open, #typora-quick-open input, .auto-suggest-container,
+.dropdown-menu, .popover, .popover-title, div.code-tooltip, .ty-table-edit {
+    background-color: var(--tana-surface);
+    color: var(--tana-ink);
+    border-color: var(--tana-line);
+}
+.typora-quick-open-item, .dropdown-menu > li > a { color: var(--tana-ink); }
+.typora-quick-open-item.active, .typora-quick-open-item:hover, .dropdown-menu > li > a:hover {
+    background-color: var(--active-file-bg-color);
+    color: var(--active-file-text-color);
+}
+::selection { background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+
+/* Typora searches document ranges, editor spans and file-list snippets. */
+.md-search-hit, .cm-search-hit, .ty-file-search-match-text,
+#write .md-search-hit, #write .cm-s-inner .cm-search-hit {
+    background-color: var(--tana-hit);
+    color: var(--tana-hit-ink);
+}
+.ty-search-item-line.active .ty-file-search-match-text,
+.md-search-hit.md-search-select, .md-search-select,
+.cm-search-hit.CodeMirror-selectedtext, .cm-search-hit.CodeMirror-selected,
+#write .md-search-select, #write .md-search-hit.md-search-select,
+#write .cm-s-inner .cm-search-hit.CodeMirror-selectedtext,
+#write .cm-s-inner .cm-search-hit.CodeMirror-selected {
+    background-color: var(--search-select-bg-color);
+    color: var(--search-select-text-color);
+    border-radius: .15em;
+    box-shadow: 0 0 0 1px var(--search-select-bg-color);
+}
+#write .md-search-hit :not(.md-search-select),
+#write .md-search-select :not(.md-search-select) {
+    /* Keep nested links and inline code legible against the match color. */
+    color: inherit !important;
+    background-color: transparent !important;
+}
+::highlight(search-hit) {
+    background-color: var(--tana-hit);
+    color: var(--tana-hit-ink);
+}
+::highlight(search-select) {
+    background-color: var(--search-select-bg-color);
+    color: var(--search-select-text-color);
+    text-shadow: none;
+}
+
+@media print {
+    :root { color-scheme: light; --bg-color: #fff; --text-color: #20242a; --tana-line: #cdd1d7; }
+    #write { max-width: none; padding: 0; }
+    #write :is(h1, h2, h3, h4, h5, h6, .md-meta-block, .md-fences, pre, code, blockquote, th, td),
+    #write .cm-s-inner span { color: #24272d; }
+    #write :is(pre, code, blockquote, .md-fences, .CodeMirror, th, tr:nth-child(even)) { background: transparent; }
+    #write :not(pre) > code, #write .cm-s-inner span[class] { color: #24272d; background: transparent; }
+    #write a[href], #write .md-link .md-content { color: #214fa8; }
+    #write mark { background: #dbefe3; color: #214634; }
+    #write h1, #write h2, #write h3 { break-after: avoid; }
+    #write tr { break-inside: avoid; }
+}
